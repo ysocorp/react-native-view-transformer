@@ -5,7 +5,8 @@ import ReactNative, {
   View,
   Animated,
   Easing,
-  NativeModules
+  NativeModules,
+  Platform
 } from 'react-native';
 
 import {createResponder} from 'react-native-gesture-responder';
