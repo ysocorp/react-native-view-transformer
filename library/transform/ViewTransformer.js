@@ -82,26 +82,23 @@ export default class ViewTransformer extends React.Component {
 
   componentWillMount() {
       this.gestureResponder = createResponder({
-        //onStartShouldSetResponder: (evt, gestureState) => true,
         onMoveShouldSetResponder: (evt, gestureState) => true,
         onResponderMove: this.onResponderMove.bind(this),
         onResponderGrant: this.onResponderGrant.bind(this),
         onResponderRelease: this.onResponderRelease.bind(this),
         onResponderTerminate: this.onResponderRelease.bind(this),
-        onResponderTerminationRequest: (evt, gestureState) => true //Do not allow parent view to intercept gesture
+        onResponderTerminationRequest: (evt, gestureState) => true
       });
 
       if (Platform.OS === 'ios'){
-        console.warn("IOS enabled");
         this.gestureResponder = createResponder({
           onStartShouldSetResponder: (evt, gestureState) => true,
           onStartShouldSetResponderCapture: (evt, gestureState) => true,
-          //onMoveShouldSetResponder: (evt, gestureState) => true,
           onResponderMove: this.onResponderMove.bind(this),
           onResponderGrant: this.onResponderGrant.bind(this),
           onResponderRelease: this.onResponderRelease.bind(this),
           onResponderTerminate: this.onResponderRelease.bind(this),
-          onResponderTerminationRequest: (evt, gestureState) => true //Do not allow parent view to intercept gesture
+          onResponderTerminationRequest: (evt, gestureState) => false //Do not allow parent view to intercept gesture
         });
       }
   }
